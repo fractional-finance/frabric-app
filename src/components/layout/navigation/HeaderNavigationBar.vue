@@ -61,6 +61,7 @@ export default {
         items: [
           { name: "My Assets", path: "/assets" },
           { name: "Marketplace", path: "/market" },
+          { name: "Exchange", path: "/exchange"},
         ],
       },
     };
@@ -74,6 +75,7 @@ export default {
       return item.path == useRoute().path;
     },
     transitTo(path) {
+      console.log(path);
       this.$router.push(path);
       this.menuToggle();
     },

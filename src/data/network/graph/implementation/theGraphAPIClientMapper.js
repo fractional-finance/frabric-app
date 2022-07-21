@@ -1,8 +1,9 @@
 import GraphQLAPIMapper from "../graphQLAPIMapper"
-import Asset  from "../../../../models/asset"
-import Proposal  from "../../../../models/proposal"
-import { Vote }  from "../../../../models/vote"
+import Asset from "../../../../models/asset"
+import Proposal from "../../../../models/proposal"
+import { Vote } from "../../../../models/vote"
 import { MarketOrder } from "../../../../models/marketOrder"
+import { BigNumber, utils } from "ethers"
 
 class TheGraphAPIMapper extends GraphQLAPIMapper {
   mapAssets(rawAssets) {
@@ -16,7 +17,7 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
 
         var ownersMap = new Map()
         rawAsset.owners
-          .forEach(ownership => { 
+          .forEach(ownership => {
             ownersMap.set(ownership.owner, ownership.shares)
           })
 
@@ -35,6 +36,37 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
       })
   }
 
+  mapRawMarketOrders(rawOrders) {
+    if (!rawOrders || rawOrders.data) return [];
+
+    const orders = rawOrders.frabrics[0].threads; // TODO(bill): Add full path here
+
+    // Questionable way of getting test data but will do for now
+    return orders.length > 0
+      ? this.mapMarketOrders(orders)
+      : [{
+        id: 'awpiohjd290',
+        type: "buy",
+        price: 7002841200000,
+        totalAmount: 829092678162,
+      }, {
+        id: 'safasfaw',
+        type: "sell",
+        price: 7002841200000,
+        totalAmount: 290952678162,
+      }, {
+        id: 'see9pfu',
+        type: "buy",
+        price: 7002841200000,
+        totalAmount: 129092678162,
+      }, {
+        id: 'SF39uf',
+        type: "sell",
+        price: 7002841200000,
+        totalAmount: 290926278162,
+      }]
+  }
+
   mapMarketOrders(rawMarketOrders) {
     if (!rawMarketOrders || rawMarketOrders.length < 1) {
       return []
@@ -44,9 +76,9 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
       .map(rawMarketOrder => {
         return new MarketOrder(
           rawMarketOrder.id,
-          rawMarketOrder.orderType,
+          rawMarketOrder.type,
           rawMarketOrder.price,
-          rawMarketOrder.amount
+          rawMarketOrder.totalAmount
         )
       })
   }

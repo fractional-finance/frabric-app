@@ -30,6 +30,7 @@ export default {
       return `
         button
         ${this.isPrimary ? "is-primary" : ""}
+        ${this.isMint ? "has-background-mint" : ""}
         ${this.extraClasses}
       `;
     },

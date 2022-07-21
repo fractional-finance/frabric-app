@@ -383,7 +383,53 @@ const ALL_ASSETS_QUERY = gql`
           frabric {
             id
           }
-          creator
+          creatortoken {
+            name
+            symbol
+            decimals
+            supply
+            tradeToken
+            globalAcceptance
+            whitelist {
+              id
+              person
+              kycHash
+              removed
+            }
+            freezelist {
+              id
+              person
+              frozenUntil
+            }
+            orderBook {
+              id
+              price
+              type
+              totalAmount
+            }
+            executedOrders {
+              id
+              blockTimestamp
+              orderer
+              executor
+              price
+              amount
+            }
+            balances {
+              id
+              holder {
+                id
+              }
+              amount
+              transfersFrom {
+                timestamp
+                to {
+                  id
+                }
+                amount
+              }
+            }
+          }
           type
           state
           votes {
@@ -637,7 +683,41 @@ const ALL_ASSET_PROPOSALS_QUERY = gql`
   }
 `
 
+const FRABRIC_DEX_ORDERS_QUERY = gql`
+  query Orders($frabricId: String!) {
+    frabrics(id: $frabricId) {
+      token {
+        orderBook {
+          id
+          price
+          type
+          totalAmount
+        }
+      }
+    }
+  }
+`
+
+const THREAD_DEX_ORDERS_QUERY = gql`
+  query Orders($frabricId: String!, $threadId: String!) {
+    frabrics(id: $frabricId) {
+      threads(id: $threadId) {
+        erc20 {
+          orderBook {
+            id
+            price
+            type
+            totalAmount
+          }
+        }
+      }
+    }
+  }
+`
+
 export {
   ALL_ASSETS_QUERY,
-  ALL_ASSET_PROPOSALS_QUERY
+  ALL_ASSET_PROPOSALS_QUERY,
+  FRABRIC_DEX_ORDERS_QUERY,
+  THREAD_DEX_ORDERS_QUERY,
 }

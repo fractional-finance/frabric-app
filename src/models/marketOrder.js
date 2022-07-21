@@ -3,21 +3,21 @@
 /**
  * MarketOrder model. Aggregates multiple orders at the same price level.
  * @property {string} id ID of the order
- * @property {MarketOrderType} orderType Type of the order (e.g. Buy or Sell)
+ * @property {MarketOrderType} type Type of the order (e.g. Buy or Sell)
  * @property {BigInt} price Price stored as BigInt
- * @property {number} amount Amount of tokens in the aggregated order
+ * @property {number} totalAmount Amount of tokens in the aggregated order
  */
- class MarketOrder {
+class MarketOrder {
   constructor(
     id,
-    orderType,
-    priceString,
-    amount
+    type,
+    price,
+    totalAmount
   ) {
     this.id = id
-    this.orderType = orderType
-    this.price = BigInt(priceString)
-    this.amount = amount
+    this.type = type
+    this.price = BigInt(price)
+    this.totalAmount = totalAmount;
   }
 }
 

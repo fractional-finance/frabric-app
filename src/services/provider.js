@@ -1,6 +1,7 @@
 import Wallet from "./wallet"
 import Market from "./market"
 import DAO from "./dao"
+import DEX from "./dex";
 import IPFSStorageNetwork from "../data/network/storage/ipfs/IPFSStorageNetwork"
 import EthereumClient from "../data/network/web3/ethereum/ethereumClient"
 import TheGraphAPIClient from "../data/network/graph/implementation/theGraphAPIClient"
@@ -41,6 +42,13 @@ class ServiceProvider {
       ethereumClient,
       graphQLAPIClient,
       storageNetwork
+    )
+  }
+
+  static dex() {
+    return new DEX(
+      ethereumClient,
+      graphQLAPIClient,
     )
   }
 }

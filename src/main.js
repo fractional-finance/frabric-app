@@ -5,8 +5,9 @@ import store from "./store"
 import "./styles/frabric-custom.scss";
 // import "bulma/css/bulma.css"
 import Toaster from "@meforma/vue-toaster";
-import Unicon from "vue-unicons"
-import { uniAppsSolid, uniListUlSolid } from "vue-unicons/dist/icons"
+import Unicon from "vue-unicons";
+import Blockies from "vue-blockies";
+import { uniAppsSolid, uniListUlSolid } from "vue-unicons/dist/icons";
 
 Unicon.add([uniAppsSolid, uniListUlSolid])
 
@@ -23,5 +24,6 @@ app.use(router)
 app.use(store)
 app.use(Toaster)
 app.use(Unicon)
+app.use(Blockies)
 app.mount("#app")
 

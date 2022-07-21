@@ -13,14 +13,20 @@ $family-sans-serif: "Poppins Sans", "sans";
 
 // COLORS
 $darkBlue: #000044;
+$darkNavy: #1F1D25;
 $mediumBlue: #5A50D8;
 $lightBlue: #968EFF;
 $darkGray: #1D1B22;
 $mediumGray: #8D8D8D;
 $lightGray: #CACACA;
 $white: #FFFFFF;
-$black: #13111A;
+$magenta: #D841DE;
+$mint: #00EDC4;
+$red: #FF3200;
+$cyan: #00BDFF;
+$lightNavy: #2F2C38;
 $darkBlue-invert: findColorInvert($darkBlue);
+$darkNavy-invert: findColorInvert($darkNavy);
 $mediumBlue-invert: findColorInvert($mediumBlue);
 $lightBlue-invert: findColorInvert($lightBlue);
 $darkGray-invert: findColorInvert($darkGray);
@@ -49,6 +55,8 @@ $border-light: $mediumBlue;
 $scheme-main-bis:$danger;
 $navbar-item-active-color:#fff;
 $card-radius: 1rem;
+$tiny-radius: 5px;
+$small-radius: 10px;
 
 input{
   border: $mediumBlue solid 1px !important;
@@ -70,6 +78,7 @@ input{
 @import "../../node_modules/bulma/sass/utilities/derived-variables";
 $addColors: (
   "darkBlue": ($darkBlue, $darkBlue-invert),
+  "darkNavy": ($darkNavy, $darkNavy-invert),
   "mediumBlue": ($mediumBlue, $mediumBlue-invert),
   "lightBlue": ($lightBlue, $lightBlue-invert),
   "darkGray": ($darkGray, $darkGray-invert),
